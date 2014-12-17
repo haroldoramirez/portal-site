@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="row" ng-init="init()">
+
+    <div class="col-md-4">
+      <nav>
+        <div class="list-group">
+          <a href="#/curriculo/identificacao" class="list-group-item">Identificação</a>
+          <a href="#/curriculo/formacao" class="list-group-item active">Formação</a>
+          <a href="#/curriculo/cursos" class="list-group-item">Cursos</a>
+          <a href="#/curriculo/idiomas" class="list-group-item">Idiomas</a>
+          <a href="#/curriculo/conhecimentos" class="list-group-item">Conhecimentos</a>
+          <a href="#/curriculo/experiencias" class="list-group-item">Experiências</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <form name="estudanteForm" class="form-horizontal" ng-submit="save(estudante)" role="form">
+
+            <fieldset>
+              <legend>Formação</legend>
+            </fieldset>
+
+          </form>
+        </div>
+      </div> <!-- < panel -->
+    </div> <!-- < col -->
+  </div> <!-- < row -->
+</div> <!-- < container -->

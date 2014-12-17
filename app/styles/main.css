@@ -1,0 +1,118 @@
+body {
+  padding-top: 70px;
+  background-color: #e6e6e6;
+}
+
+.navbar-fixed-top {
+  border-width: 0;
+}
+
+.navbar-brand {
+  padding: 5px 15px;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.navbar-default .navbar-right .login {
+  color: green;
+}
+
+.navbar-default .navbar-right .logout {
+  color: #e74c3c;
+}
+
+.navbar-default .navbar-right li > a {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.maps {
+  border: 0;
+  width: 100%;
+}
+
+#chamada h2 {
+  padding-top: 50px;
+  font-size: 26px;
+}
+
+#chamada img {
+  float: right;
+}
+
+#oportunidades {
+  padding: 20px 0;
+}
+
+#oportunidades #noticias {
+  padding-top: 20px;
+}
+
+#oportunidades a {
+  font-size: 14px;
+}
+
+#cadastro {
+  text-align: center;
+}
+
+#cadastro p {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+#instituicoes {
+  text-align: center;
+}
+
+.footer {
+  padding: 30px 0;
+  background-color: #333;
+  color: #F2F2F2;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.form-horizontal .help-block {
+  margin: 0;
+}

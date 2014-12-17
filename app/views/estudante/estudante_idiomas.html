@@ -1,0 +1,59 @@
+<div class="container" >
+
+  <div class="row" ng-init="init()">
+
+    <div class="col-md-4">
+      <nav>
+        <div class="list-group">
+          <a href="#/curriculo/identificacao" class="list-group-item">Identificação</a>
+          <a href="#/curriculo/formacao" class="list-group-item">Formação</a>
+          <a href="#/curriculo/cursos" class="list-group-item">Cursos</a>
+          <a href="#/curriculo/idiomas" class="list-group-item active"><span class="badge">{{idiomas.length}}</span> Idiomas</a>
+          <a href="#/curriculo/conhecimentos" class="list-group-item">Conhecimentos</a>
+          <a href="#/curriculo/experiencias" class="list-group-item">Experiências</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <form name="estudanteForm" class="form-horizontal" ng-submit="save(estudante)" role="form">
+
+            <div class="pull-right">
+              <a href="" class="btn btn-primary" ng-click="openIdioma()">Adicionar Idioma</a>
+            </div>
+
+            <h3>Idiomas</h3>
+            <hr>
+
+            <div class="list-group">
+              <a data-ng-repeat="idioma in idiomas" href=""
+                 ng-click="openIdioma(idioma)" class="list-group-item">
+                <h4 class="list-group-item-heading">
+                  <b>{{idioma.idioma.nomeIdioma}}</b>
+                </h4>
+                <h5>  
+                  <p ng-if="idioma.le">Lê: 
+                    <b><i>{{optionsIdiomas[idioma.le-1]}}</i></b> 
+                  </p>
+                  <p ng-if="idioma.fala">Fala: 
+                    <b><i>{{optionsIdiomas[idioma.fala-1]}}</i></b>
+                  </p>
+                  <p ng-if="idioma.escreve">Escreve: 
+                    <b><i>{{optionsIdiomas[idioma.escreve-1]}}</i></b>
+                  </p>
+                  <p ng-if="idioma.compreende">Compreende: 
+                    <b><i>{{optionsIdiomas[ idioma.compreende-1]}}</i></b>
+                  </p>
+                </h5>
+              </a>
+            </div>
+
+          </form>
+        </div>
+      </div> <!-- < panel -->
+    </div> <!-- < col -->
+  </div> <!-- < row -->
+</div> <!-- < container -->

@@ -1,0 +1,370 @@
+<div tabindex="1" class="container" ng-controller="EstudanteCtrl">
+
+  <div class="row" ng-init="init()">
+
+    <div class="col-md-4">
+      <nav>
+        <div disabled class="list-group">
+          <a href="" class="list-group-item active">Identificação</a>
+          <a href="#/curriculo/formacao" class="list-group-item">Formação</a>
+          <a href="#/curriculo/cursos" class="list-group-item">Cursos</a>
+          <a href="#/curriculo/idiomas" class="list-group-item">Idiomas</a>
+          <a href="#/curriculo/conhecimentos" class="list-group-item">Conhecimentos</a>
+          <a href="#/curriculo/experiencias" class="list-group-item">Experiências</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <form name="estudanteForm" class="form-horizontal" ng-submit="save()" role="form">
+
+            <fieldset>
+              <legend>Dados Pessoais</legend>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">CPF</label>
+                <div class="col-md-3">
+                  <input  type="text" name="cpf" id="cpf" ng-disabled="true"
+                          ui-mask="999.999.999-99" class="form-control" 
+                          ng-model="estudante.cpf" readonly>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Nome 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-8">
+                  <input  type="text" name="name" placeholder="Informe seu nome completo" 
+                          class="form-control" ng-model="estudante.nomeCompleto" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Gênero 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-9">
+                  <div class="controls">
+                    <label class="radio-inline">
+                      <input  type="radio" id="genero_masculino" name="genero" ng-model="estudante.genero" 
+                              value="MASCULINO"> Masculino
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" id="genero_feminino" name="genero" ng-model="estudante.genero" 
+                             value="FEMININO"> Feminino
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Estado Civil 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-5">
+                  <select name="estadoCivil" class="form-control" 
+                          ng-model="estudante.estadoCivil" required>
+                    <option value="SOLTEIRO">Solteiro</option>
+                    <option value="CASADO">Casado</option>
+                    <option value="SEPARADO">Separado</option>
+                    <option value="DIVORCIADO">Divorciado</option>
+                    <option value="VIUVO">Viúvo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Nacionalidade 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-5">
+                  <input type="text" name="nacionalidade" class="form-control" 
+                         placeholder="Brasileira" ng-model="estudante.nacionalidade" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Data de nascimento 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-3">
+                  <p class="input-group">
+                    <input  type="text" class="form-control" datepicker-popup="dd/MM/yyyy" 
+                            ng-model="estudante.dataNascimento" is-open="opened" 
+                            show-button-bar="false" ng-required="false"/>
+                    <span class="input-group-btn">          
+                      <button type="button" class="btn btn-default" ng-click="openDatePicker($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                    </span>
+                  </p>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">RG 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-3">
+                  <input type="text" name="rg" class="form-control" ng-model="estudante.rg" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Orgão Expedidor 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-3">
+                  <select class="form-control" name="orgao_expedidor" 
+                          ng-model="estudante.orgaoExpedidor" required>
+                      <option ng-if="estudante.orgaoExpedidor" 
+                              disabled value="{{estudante.orgaoExpedidor}}">
+                              {{estudante.orgaoExpedidor}}
+                      </option>
+                      <option ng-repeat="estado in estados track by estado.sigla" 
+                              value="{{estado.sigla}}">{{estado.sigla}}
+                      </option>
+                  </select>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Filiação</legend>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Nome da mãe 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-8">
+                  <input type="text" name="name_mom" class="form-control" 
+                         ng-model="estudante.nomeDaMae" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Nome do pai</label>
+                <div class="col-md-8">
+                  <input type="text" name="name_dad" class="form-control" 
+                         ng-model="estudante.nomeDoPai">
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Contato</legend>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Telefone Celular</label>
+                <div class="col-md-4">
+                  <input type="tel" name="telefone_celular" ui-mask="(99) 9999-9999"
+                         class="form-control" ng-model="estudante.telefoneCelular" 
+                         ng-minlength="3" ng-maxlength="20">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Telefone Residencial</label>
+                <div class="col-md-4">
+                  <input type="tel" name="telefone_residencial" ui-mask="(99) 9999-9999" 
+                         class="form-control" ng-model="estudante.telefoneResidencial" 
+                         ng-minlength="3" ng-maxlength="20">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Telefone Comercial</label>
+                <div class="col-md-4">
+                  <input type="tel" name="telefone_comercial" ui-mask="(99) 9999-9999" 
+                         class="form-control" ng-model="estudante.telefoneComercial" 
+                         ng-minlength="3" ng-maxlength="20">
+                </div>
+              </div>
+              
+
+            <fieldset>
+              <legend>Endereço</legend>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">CEP 
+                <i class="text-danger">*</i></label>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <input type="text" name="cep" class="form-control" 
+                           ui-mask="99999-999" ng-model="estudante.cep" 
+                           ng-required="estudante.cep" required>
+                    <div class="input-group-addon">
+                      <a href="">
+                        <span class="glyphicon glyphicon-refresh" 
+                              ng-click="buscarCEP(estudante.cep)">
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                  <div ng-if="mensagemCEP" class="help-block">
+                    <!-- <span><i class="small">{{mensagemCEP}}</i></span> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">País</label>
+                <div class="col-md-6">
+                  <input type="text" name="pais" class="form-control" 
+                          ng-model="estudante.pais" placeholder="BRASIL" disabled value="BRASIL">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Estado 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-6">
+                  <select class="form-control" name="estado" required
+                          ng-model="endereco.estado" ng-change="loadCidades(endereco.estado)"
+                          ng-options="estado.nome for estado in estados track by estado.id">
+                  </select>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Cidade <i class="text-danger">*</i></label>
+                <div class="col-md-6">
+                  <select class="form-control" name="cidade" required
+                          ng-model="endereco.cidade" ng-disabled="!endereco.estado" 
+                          ng-change="loadBairros(endereco.cidade)"
+                          ng-options="cidade.nome for cidade in cidades track by cidade.id">
+                  </select>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Bairro 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-6">
+                  <select class="form-control" name="bairro" required
+                          ng-model="endereco.bairro" ng-disabled="!endereco.cidade"
+                          ng-options="bairro.nome for bairro in bairros track by bairro.id">
+                  </select>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Logradouro 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-6">
+                  <input type="text" name="logradouro" class="form-control" 
+                         ng-model="estudante.logradouro" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Número 
+                <i class="text-danger">*</i></label>
+                <div class="col-md-3"><!-- type="number" -->
+                  <input type="text" name="numero" class="form-control" 
+                         ng-model="estudante.numero" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Complemento</label>
+                <div class="col-md-6">
+                  <input  type="text" name="complemento" 
+                          class="form-control" ng-model="estudante.complemento">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Outras Informações</legend>
+              <div class="form-group">
+                <div class="col-md-9 col-md-offset-3">
+                  <div class="checkbox">
+                    <label>
+                      <input name="pne" type="checkbox" ng-value="estudante.pne" ng-model="estudante.pne"> Portador de Necessidades Especiais ?
+                    </label>
+                  </div>
+                  <div class="help-block">
+                    <a target="_blank" href="http://www.planalto.gov.br/ccivil_03/decreto/D3298.htm" class="small">Conforme Decreto de Lei 3298</a>
+                  </div>
+                 </div>
+                <label ng-if="estudante.pne===true" class="col-md-3 control-label">Necessidade Especial <i class="text-danger">*</i></label>
+                <div ng-if="estudante.pne===true" class="col-md-6">
+                  <select name="pneTipo" class="form-control" ng-model="estudante.pneTipo">
+                    <option value="VISUAL">Visual</option>
+                    <option value="AUDITIVO">Auditivo</option>
+                    <option value="MENTAL">Mental</option>
+                    <option value="FISICO">Físico</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Situação atual <i class="text-danger">*</i></label>
+                <div class="col-md-9">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="situacao_atual" ng-model="estudante.trabalhando" value="1">Não estou estagiando
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="situacao_atual" ng-model="estudante.trabalhando" value="2">Estou estagiando, mas tenho interesse em outro estágio
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="situacao_atual" ng-model="estudante.trabalhando" value="3">Estou estagiando, e não tenho interesse em outro estágio
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Horário preferencial <i class="text-danger">*</i></label>
+                <div class="col-md-5">
+                  <select class="form-control" name="disponibilidade" ng-model="estudante.disponibilidade" required>
+                    <option value="MANHA">Manhã</option>
+                    <option value="TARDE">Tarde</option>
+                    <option value="NOITE">Noite</option>
+                    <option value="MANHAETARDE">Manhã e tarde</option>
+                    <option value="TARDEENOITE">Tarde e noite</option>
+                    <option value="OUTRO">Outro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Link CNPQ</label>
+                <div class="col-md-7"><!-- type="url" -->
+                  <input type="text" name="link_cnpq" class="form-control" 
+                  placeholder="http://lattes.cnpq.br/00000000" ng-model="estudante.linkCnpq">
+                </div>
+              </div>
+
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" name="btn_salvar_informacoes"
+                      ng-disabled="estudanteForm.$invalid||!estudante.trabalhando||!estudante.dataNascimento||!validatePNE()">Salvar Informações
+              </button>
+              <i class="text-danger">*</i> <em class="small">Campos obrigatórios.</em>
+            </div>
+          </form>
+        </div>
+      </div> <!-- < panel -->
+    </div> <!-- < col -->
+  </div> <!-- < row -->
+</div> <!-- < container -->

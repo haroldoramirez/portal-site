@@ -1,0 +1,41 @@
+<div class="container" >
+
+  <div class="row" ng-init="init()">
+
+    <div class="col-md-4">
+      <nav>
+        <div class="list-group">
+          <a href="#/curriculo/identificacao" class="list-group-item">Identificação</a>
+          <a href="#/curriculo/formacao" class="list-group-item">Formação</a>
+          <a href="#/curriculo/cursos" class="list-group-item">Cursos</a>
+          <a href="#/curriculo/idiomas" class="list-group-item">Idiomas</a>
+          <a href="#/curriculo/conhecimentos" class="list-group-item active"><span class="badge">{{conhecimentos.length}}</span> Conhecimentos</a>
+          <a href="#/curriculo/experiencias" class="list-group-item">Experiências</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="pull-right">
+            <a href="" class="btn btn-primary" ng-click="openConhecimento()">Adicionar Conhecimento</a>
+          </div>
+
+          <h3>Conhecimentos</h3>
+          <hr>
+
+          <div class="list-group">
+            <a data-ng-repeat="conhecimento in conhecimentos" href="" ng-click="openConhecimento(conhecimento)" href="" class="list-group-item">
+              <h4>
+                <b>{{conhecimento.conhecimentoInformatica.descricao}}</b> nível <b>{{optionsNiveis[conhecimento.nivel-1]}}</b>
+              </h4>
+            </a>
+          </div>
+
+        </div>
+      </div> <!-- < panel -->
+    </div> <!-- < col -->
+  </div> <!-- < row -->
+</div> <!-- < container -->

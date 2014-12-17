@@ -1,0 +1,96 @@
+<div ng-controller="CadastroCtrl" class="container">
+  <div class="row">
+      
+    <div class="col-md-6 col-md-offset-3">
+     
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal" name="cadastroForm" ng-submit="save()" role="form">
+            <fieldset>
+              <legend>Novo Cadastro</legend>
+
+              <!-- <div class="alert alert-success" name="success" ng-if="success">
+              Seu cadastro foi realizado. Em instantes você receberá um email para confirmação.</div> -->
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">CPF</label>
+                <div class="col-md-4">
+                  <input type="text" name="cpf" ng-minlength="11" ui-mask="999.999.999-99" class="form-control" ng-model="cadastro.documento" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Nome</label>
+                <div class="col-md-8">
+                  <input type="text" name="name" ng-minlength="5" placeholder="Informe seu nome completo" class="form-control" ng-model="cadastro.nome" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Email</label>
+                <div class="col-md-8">
+                  <input type="email" name="email" placeholder="exemplo@exemplo.com" class="form-control" ng-model="cadastro.usuario.email" required>
+                  <div class="help-block">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Senha</label>
+                <div class="col-md-8">
+                  <input type="password" name="senha" ng-minlength="6" placeholder="Informe uma senha para acesso" ng-model="cadastro.usuario.senha" class="form-control" required>
+                  <div class="help-block">
+                    <span name="a_senha_deve_ter_6_caracteres_minimos"
+                         ng-show="cadastroForm.senha.$error.minlength">
+                       <i class="small">A senha deve conter no mínimo 6 caracteres!</i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Confirmação</label>
+                <div class="col-md-8">
+                  <input type="password" name="confirmacao_senha" placeholder="Repita a senha informada" ng-model="confirmacaoSenha" class="form-control" required>
+                  <div class="help-block">
+                    <spam name="as_senhas_nao_conferem"
+                          ng-show="!validaSenha() && !cadastroForm.confirmacao_senha.$error.required"><i class="small">As senhas não conferem</i></spam>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit" name="btn_continuar_cadastro" 
+                      class="btn btn-primary" 
+                      ng-disabled="cadastroForm.$invalid || !validaSenha()">
+                      Continuar Cadastro
+              </button>
+              <em class="small">Ao continuar você concorda com o
+                <a data-toggle="modal" href="views/estudante/termo_compromisso.html" 
+                data-target="#modal">Termo de adesão e compromisso</a>
+              </em>
+            </div>
+            <!-- <ul ng-if="mensagem" name="fail" ng-repeat="mensagem in mensagens">
+              <p class="text-danger text-center" >{{mensagem}}</p>
+            </ul> -->
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+</div>
+

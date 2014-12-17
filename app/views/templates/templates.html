@@ -1,0 +1,318 @@
+<script type="text/ng-template" id="experiencia.html">
+		
+	<div class="modal-header">
+		<button type="button" class="close" data-ng-click="close()" data-dismiss="modal">&times;</button>
+			<h4 ng-if="experiencia.id"  class="modal-title">Atualizar experiência</h4>
+			<h4 ng-if="!experiencia.id" class="modal-title">Adicionar experiência</h4>
+	</div>
+
+
+	<div class="modal-body">	
+		<form name="experienciaForm" ng-submit="save()" role="form">
+				<div class="form-group">
+					<label class="control-label">Cargo <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !experiencia.cargo}">
+						<input data-ng-model="experiencia.cargo" placeholder="Insira cargo da experiência ..." class="form-control" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">Vínculo <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !experiencia.vinculo}">
+						<select class="form-control" data-ng-model="experiencia.vinculo">
+                <option value="Estagiário">Estagiário</option>
+                <option value="Empregado">Empregado</option>
+                <option value="Autônomo">Autônomo</option>
+                <option value="Voluntário">Voluntário</option>
+                <option value="Empresário">Empresário</option>
+            </select>
+          </div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label">Empresa <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !experiencia.empresa}">
+							<input data-ng-model="experiencia.empresa" placeholder="Insira a empresa da experiência ..." class="form-control" required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label">Data de Início</label>
+					<div class="input-group">
+            <input 	placeholder="Insira a data de início da experiência ..." max-date="experiencia.dataTermino"
+            				type="text" class="form-control" datepicker-popup="dd/MM/yyyy" 
+                    is-open="openedDataInicio" ng-model="experiencia.dataInicio" 
+                    show-button-bar="false" ng-required="false"/>
+            <span class="input-group-btn">          
+              <button type="button" class="btn btn-default" ng-click="openDatePickerDataInicio($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+         </div>
+				
+				<div class="form-group">
+					<label class="control-label">Data de Término</label>
+					<div class="input-group">
+            <input 	placeholder="Insira a data de término da experiência ..." 
+            				min-date="experiencia.dataInicio" type="text" class="form-control" datepicker-popup="dd/MM/yyyy" 
+            				is-open="openedDataTermino" ng-model="experiencia.dataTermino"
+                    show-button-bar="false" ng-required="false"/>
+            <span class="input-group-btn">          
+              <button type="button" class="btn btn-default" ng-click="openDatePickerDataTermino($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+				
+				<div class="form-group">
+					<label class="control-label">Atividades Desenvolvidas <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !experiencia.atividade}">
+						<div class="controls">
+							<textarea data-ng-model="experiencia.atividade" maxlength="254" placeholder="Insira as atividades desenvolvidas ..." class="form-control" rows="4" required>
+							</textarea>
+						</div>
+					</div>
+				</div>
+		
+
+				<div class="btn-toolbar">
+						<a href="" class="btn btn-danger" ng-if="experiencia.id" ng-click="delete()"><span class="glyphicon glyphicon-trash"></span> Remover</a>
+					<div class="pull-right">
+						<button type="button" class="btn btn-default" ng-click="close()" >Cancelar</button>
+						<button type="submit" ng-disabled="!experiencia.atividade||!experiencia.empresa||!experiencia.cargo||!experiencia.vinculo" class="btn btn-primary">Salvar Informações
+						</button>
+			    </div>
+				</div>
+
+			</div>
+		<form>	
+	</div>
+
+</script>
+
+<script type="text/ng-template" id="cursoDoCandidato.html">
+		
+	<div class="modal-header">
+		<button type="button" class="close" data-ng-click="close()" data-dismiss="modal">&times;
+		</button>
+			<h4 ng-if="curso.id"  class="modal-title">Atualizar curso</h4>
+			<h4 ng-if="!curso.id" class="modal-title">Adicionar curso</h4>
+	</div>
+
+
+	<div class="modal-body">	
+		
+		<form name="cursoForm" ng-submit="save()" role="form">
+
+				<div class="form-group">
+					<label class="control-label">Data de Início</label>
+					<div class="input-group">
+            <input 	placeholder="Insira a data de início do curso ..." 
+            				max-date="curso.dataTermino"
+            				type="text" class="form-control" datepicker-popup="dd/MM/yyyy" 
+                    is-open="openedDataInicio" ng-model="curso.dataInicio" 
+                    show-button-bar="false" ng-required="false"/>
+            <span class="input-group-btn">          
+              <button type="button" class="btn btn-default" ng-click="openDatePickerDataInicio($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+         </div>
+				
+				<div class="form-group">
+					<label class="control-label">Data de Término</label>
+					<div class="input-group">
+            <input 	placeholder="Insira a data de término do curso ..." 
+            				min-date="curso.dataInicio" 
+            				type="text" class="form-control" datepicker-popup="dd/MM/yyyy" 
+            				is-open="openedDataTermino" ng-model="curso.dataTermino"
+                    show-button-bar="false" ng-required="false"/>
+            <span class="input-group-btn">          
+              <button type="button" class="btn btn-default" ng-click="openDatePickerDataTermino($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+
+				<div class="form-group">
+					<label class="control-label">Nome do Curso <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !curso.nome}">
+						<input data-ng-model="curso.nome" placeholder="Insira o nome do curso ..." 
+									class="form-control" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">Instituição <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !curso.instituicao}">
+						<input 	data-ng-model="curso.instituicao" 
+										placeholder="Insira a instiuição do curso ..." 
+										class="form-control" required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label">Carga horária </label>
+						<input  type="number"	data-ng-model="curso.cargaHoraria" 
+										placeholder="Insira a carga horário do curso ..." 
+										class="form-control">
+				</div>
+
+				<div class="btn-toolbar">
+						<a href="" class="btn btn-danger" ng-if="curso.id" ng-click="delete()"><span class="glyphicon glyphicon-trash"></span> Remover</a>
+					<div class="pull-right">
+						<button type="button" class="btn btn-default" ng-click="close()" >Cancelar</button>
+						<button type="submit" ng-disabled="!curso.instituicao||!curso.nome" class="btn btn-primary">Salvar Informações
+						</button>
+			    </div>
+				</div>
+
+			</div>
+		<form>	
+	</div>
+
+</script>
+
+<script type="text/ng-template" id="conhecimento.html">
+		
+	<div class="modal-header">
+		<button type="button" class="close" data-ng-click="close()" data-dismiss="modal">&times;
+		</button>
+			<h4 ng-if="curso.id"  class="modal-title">Atualizar conhecimento</h4>
+			<h4 ng-if="!curso.id" class="modal-title">Adicionar conhecimento</h4>
+	</div>
+
+
+	<div class="modal-body">	
+		
+		<form name="cursoForm" ng-submit="save()" role="form">
+
+				<div class="form-group">
+					<label class="control-label">Grupo <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !conhecimento.conhecimentoInformatica.grupoConhecimento.id}">
+						<select ng-change="loadConhecimentos(conhecimento.conhecimentoInformatica.grupoConhecimento.id)" class="form-control" 
+										data-ng-model="conhecimento.conhecimentoInformatica.grupoConhecimento" 
+										ng-options="(grupo.descricao) for grupo in grupos">
+                <option value="" disabled>{{conhecimento.conhecimentoInformatica.grupoConhecimento.descricao}}</option>
+            </select>
+					</div>
+        </div>
+
+        <div ng-if="conhecimento.conhecimentoInformatica.grupoConhecimento.id" class="form-group">
+					<label class="control-label">Conhecimento de Informática <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !conhecimento.conhecimentoInformatica.id}">
+						<select class="form-control" data-ng-model="conhecimento.conhecimentoInformatica" 
+										ng-options="(conhecimento.descricao) for conhecimento in conhecimentos">
+              <option value="" disabled>{{conhecimento.conhecimentoInformatica.descricao}}</option>
+          	</select>
+          </div>	
+        </div>
+
+        <div class="form-group">
+					<label class="control-label">Nível <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !conhecimento.nivel}">
+						<select class="form-control" data-ng-model="conhecimento.nivel">
+	            <option value="1">Básico</option>
+	            <option value="2">Intermediário</option>
+	            <option value="3">Avançado</option>
+	          </select>
+          </div>
+        </div>
+
+				<div class="btn-toolbar">
+						<a href="" class="btn btn-danger" ng-if="conhecimento.id" ng-click="delete()"><span class="glyphicon glyphicon-trash"></span> Remover</a>
+					<div class="pull-right">
+						<button type="button" class="btn btn-default" ng-click="close()" >Cancelar</button>
+						<button type="submit" ng-disabled="!conhecimento.nivel||!conhecimento.conhecimentoInformatica.descricao" class="btn btn-primary">Salvar Informações
+						</button>
+			    </div>
+				</div>
+
+			</div>
+		<form>	
+	</div>
+
+</script>
+
+
+<script type="text/ng-template" id="idioma.html">
+		
+	<div class="modal-header">
+		<button type="button" class="close" data-ng-click="close()" data-dismiss="modal">&times;
+		</button>
+			<h4 ng-if="curso.id"  class="modal-title">Atualizar idioma</h4>
+			<h4 ng-if="!curso.id" class="modal-title">Adicionar idioma</h4>
+	</div>
+
+
+	<div class="modal-body">	
+		
+		<form name="cursoForm" ng-submit="save()" role="form">
+
+				<div class="form-group">
+					<label class="control-label">Idioma <i class="text-danger">*</i></label>
+					<div ng-class="{'has-error': !idioma.idioma}">
+						<select class="form-control" data-ng-model="idioma.idioma" ng-options="(idioma.nomeIdioma) for idioma in idiomas">
+                <option value="">{{idioma.idioma.nomeIdioma}}</option>
+            </select>
+					</div>
+        </div>
+
+        <div class="form-group">
+					<label class="control-label">Lê</label>
+					<select class="form-control" data-ng-model="idioma.le">
+            <option value="1">Básico</option>
+            <option value="2">Intermediário</option>
+            <option value="3">Técnico</option>
+            <option value="4">Fluente</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+					<label class="control-label">Fala</label>
+					<select class="form-control" data-ng-model="idioma.fala">
+            <option value="1">Básico</option>
+            <option value="2">Intermediário</option>
+            <option value="3">Técnico</option>
+            <option value="4">Fluente</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+					<label class="control-label">Escreve</label>
+					<select class="form-control" data-ng-model="idioma.escreve">
+            <option value="1">Básico</option>
+            <option value="2">Intermediário</option>
+            <option value="3">Técnico</option>
+            <option value="4">Fluente</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+					<label class="control-label">Compreende</label>
+					<select class="form-control" data-ng-model="idioma.compreende">
+            <option value="1">Básico</option>
+            <option value="2">Intermediário</option>
+            <option value="3">Técnico</option>
+            <option value="4">Fluente</option>
+          </select>
+        </div>
+
+				<div class="btn-toolbar">
+						<a href="" class="btn btn-danger" ng-if="idioma.id" ng-click="delete()"><span class="glyphicon glyphicon-trash"></span> Remover</a>
+					<div class="pull-right">
+						<button type="button" class="btn btn-default" ng-click="close()" >Cancelar</button>
+						<button type="submit" ng-disabled="!idioma.idioma.id" class="btn btn-primary">Salvar Informações
+						</button>
+			    </div>
+				</div>
+
+			</div>
+		<form>	
+	</div>
+
+</script>

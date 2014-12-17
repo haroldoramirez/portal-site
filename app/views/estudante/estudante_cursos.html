@@ -1,0 +1,45 @@
+<div class="container" >
+
+  <div class="row" ng-init="init()">
+
+    <div class="col-md-4">
+      <nav>
+        <div class="list-group">
+          <a href="#/curriculo/identificacao" class="list-group-item">Identificação</a>
+          <a href="#/curriculo/formacao" class="list-group-item">Formação</a>
+          <a href="#/curriculo/cursos" class="list-group-item active"><span class="badge">{{cursos.length}}</span> Cursos</a>
+          <a href="#/curriculo/idiomas" class="list-group-item">Idiomas</a>
+          <a href="#/curriculo/conhecimentos" class="list-group-item">Conhecimentos</a>
+          <a href="#/curriculo/experiencias" class="list-group-item">Experiências</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="pull-right">
+            <a href="" class="btn btn-primary" ng-click="openCurso()">Adicionar Curso/Evento</a>
+          </div>
+
+          <h3>Cursos e Eventos</h3>
+          <hr>
+
+          <div class="list-group">
+            <a data-ng-repeat="curso in cursos" href="" ng-click="openCurso(curso)" href="" class="list-group-item">
+              <h4>
+                <b>{{curso.nome}}</b> em <b>{{curso.instituicao}}</b> 
+                <b ng-if="curso.cargaHoraria">com carga horária de {{curso.cargaHoraria}} horas</b>
+                <small ng-if="curso.dataInicio">de <i>{{curso.dataInicio|date:'dd/MM/yyyy'}}</i> até <i>{{curso.dataTermino|date:'dd/MM/yyyy'}}</i>
+                <i ng-if="!curso.dataTermino">o momento</i>
+                </small>
+              </h4>
+            </a>
+          </div>
+
+        </div>
+      </div> <!-- < panel -->
+    </div> <!-- < col -->
+  </div> <!-- < row -->
+</div> <!-- < container -->
